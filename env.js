@@ -37,8 +37,8 @@ require('dotenv').config({
 const BUNDLE_ID = 'com.rennit'; // ios bundle id
 const PACKAGE = 'com.rennit'; // android package name
 const NAME = 'RenniT'; // app name
-const EXPO_ACCOUNT_OWNER = 'expo-owner'; // expo account owner
-const EAS_PROJECT_ID = 'c3e1075b-6fe7-4686-aa49-35b46a229044'; // eas project id
+const EXPO_ACCOUNT_OWNER = 'ch4devlab'; // expo account owner
+const EAS_PROJECT_ID = '9d524b0a-443f-4f39-9889-72f344921144'; // eas project id
 const SCHEME = 'RenniT'; // app scheme
 
 /**
