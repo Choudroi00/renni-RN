@@ -1,7 +1,6 @@
 /* eslint-disable react/no-unstable-nested-components */
-import { Link, Redirect, SplashScreen, Tabs } from 'expo-router';
+import { Redirect, SplashScreen } from 'expo-router';
 import React, { useCallback, useEffect } from 'react';
-
 
 import { useAuth, useIsFirstTime } from '@/lib';
 
@@ -25,14 +24,7 @@ export default function TabLayout() {
   if (status === 'signOut') {
     return <Redirect href="/login" />;
   }
-  return (
-    <></>
-  );
+  return <></>;
 }
 
-const CreateNewPostLink = () => {
-  return (
-    <>
-    </>
-  );
-};
+

@@ -2,7 +2,6 @@
 import '../../global.css';
 
 import { BottomSheetModalProvider } from '@gorhom/bottom-sheet';
-import { ThemeProvider } from '@react-navigation/native';
 import { Stack } from 'expo-router';
 import * as SplashScreen from 'expo-splash-screen';
 import React from 'react';
@@ -12,10 +11,7 @@ import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import { KeyboardProvider } from 'react-native-keyboard-controller';
 
 import { APIProvider } from '@/api';
-import { hydrateAuth, loadSelectedTheme } from '@/lib';
-import { useThemeConfig } from '@/lib/use-theme-config';
-import { colorsScheme } from '@/components/ui/colors';
-import { verifyInstallation } from 'nativewind';
+import { hydrateAuth } from '@/lib';
 
 export { ErrorBoundary } from 'expo-router';
 
@@ -34,7 +30,6 @@ SplashScreen.setOptions({
 });
 
 export default function RootLayout() {
-  
   return (
     <Providers>
       <Stack>
@@ -49,18 +44,14 @@ export default function RootLayout() {
 function Providers({ children }: { children: React.ReactNode }) {
   //const theme = useThemeConfig();
   return (
-    <GestureHandlerRootView
-      style={styles.container}
-      className={`bg-white`}>
+    <GestureHandlerRootView style={styles.container} className={`bg-white`}>
       <KeyboardProvider>
-        
-          <APIProvider>
-            <BottomSheetModalProvider>
-              {children}
-              <FlashMessage position="top" />
-            </BottomSheetModalProvider>
-          </APIProvider>
-        
+        <APIProvider>
+          <BottomSheetModalProvider>
+            {children}
+            <FlashMessage position="top" />
+          </BottomSheetModalProvider>
+        </APIProvider>
       </KeyboardProvider>
     </GestureHandlerRootView>
   );

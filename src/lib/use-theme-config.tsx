@@ -11,11 +11,11 @@ const DarkTheme: Theme = {
   ..._DarkTheme,
   colors: {
     ..._DarkTheme.colors,
-    primary: "#007dfc",
-    background: "#ffffff",
-    text: "#242424",
-    border: "transparent",
-    card: "#f6f6f6",
+    primary: '#007dfc',
+    background: '#ffffff',
+    text: '#242424',
+    border: 'transparent',
+    card: '#f6f6f6',
   },
 };
 
