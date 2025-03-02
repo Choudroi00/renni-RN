@@ -69,7 +69,7 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
     [
       'expo-font',
       {
-        fonts: ['./assets/fonts/Inter.ttf'],
+        fonts: ['./assets/fonts/Montserrat-Regular.ttf'],
       },
     ],
     'expo-localization',

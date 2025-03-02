@@ -14,6 +14,8 @@ import { KeyboardProvider } from 'react-native-keyboard-controller';
 import { APIProvider } from '@/api';
 import { hydrateAuth, loadSelectedTheme } from '@/lib';
 import { useThemeConfig } from '@/lib/use-theme-config';
+import { colorsScheme } from '@/components/ui/colors';
+import { verifyInstallation } from 'nativewind';
 
 export { ErrorBoundary } from 'expo-router';
 
@@ -22,7 +24,7 @@ export const unstable_settings = {
 };
 
 hydrateAuth();
-loadSelectedTheme();
+//loadSelectedTheme();
 // Prevent the splash screen from auto-hiding before asset loading is complete.
 SplashScreen.preventAutoHideAsync();
 // Set the animation options. This is optional.
@@ -32,6 +34,7 @@ SplashScreen.setOptions({
 });
 
 export default function RootLayout() {
+  
   return (
     <Providers>
       <Stack>
@@ -44,21 +47,20 @@ export default function RootLayout() {
 }
 
 function Providers({ children }: { children: React.ReactNode }) {
-  const theme = useThemeConfig();
+  //const theme = useThemeConfig();
   return (
     <GestureHandlerRootView
       style={styles.container}
-      className={theme.dark ? `dark` : undefined}
-    >
+      className={`bg-white`}>
       <KeyboardProvider>
-        <ThemeProvider value={theme}>
+        
           <APIProvider>
             <BottomSheetModalProvider>
               {children}
               <FlashMessage position="top" />
             </BottomSheetModalProvider>
           </APIProvider>
-        </ThemeProvider>
+        
       </KeyboardProvider>
     </GestureHandlerRootView>
   );

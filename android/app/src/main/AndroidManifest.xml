@@ -27,6 +27,7 @@
         <data android:scheme="RenniT"/>
         <data android:scheme="com.rennit.development"/>
         <data android:scheme="exp+obytesapp"/>
+        <data android:scheme="exp+rennit"/>
       </intent-filter>
     </activity>
   </application>
