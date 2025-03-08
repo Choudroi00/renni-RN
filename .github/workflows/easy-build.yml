@@ -70,3 +70,9 @@ jobs:
           chmod +x ./gradlew
           ./gradlew assembleRelease
         shell: bash
+      
+      - name: Upload APK as an artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: android-apk
+          path: android/app/build/outputs/apk/release/app-release.apk
