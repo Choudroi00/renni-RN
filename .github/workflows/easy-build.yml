@@ -65,7 +65,6 @@ jobs:
         shell: bash
   
       - name: 📱 Run Android Build
-        if: ${{ inputs.ANDROID == 'true' }}
         run: |
           cd ./android 
           chmod +x ./gradlew
