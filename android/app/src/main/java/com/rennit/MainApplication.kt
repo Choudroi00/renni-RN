@@ -1,4 +1,4 @@
-package com.rennit.development
+package com.rennit
 
 import android.app.Application
 import android.content.res.Configuration
