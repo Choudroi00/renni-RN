@@ -58,10 +58,10 @@ jobs:
         uses: expo/expo-github-action@v8
         with:
           eas-version: latest
-          token: ${{ inputs.EXPO_TOKEN }}
+          token: ${{ secrets.EXPO_TOKEN }}
   
       - name: ⚙️ Run Prebuild
-        run: pnpm prebuild:${{ inputs.APP_ENV }}
+        run: pnpm prebuild:staging
         shell: bash
   
       - name: 📱 Run Android Build
