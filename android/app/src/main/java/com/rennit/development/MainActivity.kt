@@ -1,4 +1,4 @@
-package com.rennit
+package com.rennit.development
 import expo.modules.splashscreen.SplashScreenManager
 
 import android.os.Build

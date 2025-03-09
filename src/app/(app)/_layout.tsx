@@ -5,6 +5,8 @@ import React, { useCallback, useEffect } from 'react';
 import { useAuth, useIsFirstTime } from '@/lib';
 
 export default function TabLayout() {
+  
+
   const status = useAuth.use.status();
   const [isFirstTime] = useIsFirstTime();
   const hideSplash = useCallback(async () => {

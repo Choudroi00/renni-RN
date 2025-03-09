@@ -72,7 +72,7 @@ const OnboardingSlide = () => {
   const nextSlide = () => {
 
     if(currentSlide + 1 === slides.length){
-      router.push('/register')
+      router.push('/auth')
     }
 
     setCurrentSlide((currentSlide + 1) % slides.length)
