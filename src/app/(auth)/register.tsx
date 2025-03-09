@@ -2,7 +2,8 @@ import React, { useEffect, useRef, useState } from 'react';
 import { View, Text, TextInput, Pressable, Image, ScrollView, LayoutChangeEvent, TouchableWithoutFeedback, Keyboard } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
-import { Eye } from 'lucide-react-native';
+import AntDesign from '@expo/vector-icons/AntDesign';
+import { Camera, Eye } from 'lucide-react-native';
 import Animated, { 
   useAnimatedStyle, 
   useSharedValue, 
@@ -12,6 +13,7 @@ import Animated, {
   withDelay
 } from 'react-native-reanimated';
 import useKeyboard from '@/lib/hooks/use-keyboard';
+import { colorsScheme } from '@/components/ui/colors';
 
 const SignUpScreen = () => {
   const [showPassword, setShowPassword] = useState(false);
@@ -69,7 +71,7 @@ const SignUpScreen = () => {
       >
         <Animated.View 
           onLayout={getHeightOnLayout} 
-          style={animatedHeaderStyle} 
+          style={{}} 
           className="justify-center"
         >
           <Text className="text-3xl font-bold text-center">Create Account</Text>
@@ -82,7 +84,7 @@ const SignUpScreen = () => {
           <View className="space-y-6">
             {/* Name field */}
             <View className="mb-3">
-              <Text className="text-gray-700 mb-3">Name</Text>
+              <Text className="text-gray-700 mb-3 font-semibold">Name</Text>
               <TextInput
                 className="bg-gray-100 p-4 rounded-lg text-gray-700"
                 placeholder="Ex. John Doe"
@@ -92,7 +94,7 @@ const SignUpScreen = () => {
 
             {/* Email field */}
             <View className="mb-3">
-              <Text className="text-gray-700 mb-2">Email</Text>
+              <Text className="text-gray-700 mb-2 font-semibold">Email</Text>
               <TextInput
                 className="bg-gray-100 p-4 rounded-lg text-gray-700"
                 placeholder="example@gmail.com"
@@ -104,7 +106,7 @@ const SignUpScreen = () => {
 
             {/* Password field */}
             <View className="mb-3">
-              <Text className="text-gray-700 font-inter mb-2">Password</Text>
+              <Text className="text-gray-700 mb-2 font-semibold">Password</Text>
               <View className="relative">
                 <TextInput
                   className="bg-gray-100 p-4 rounded-lg text-gray-700"
@@ -135,14 +137,15 @@ const SignUpScreen = () => {
               </Pressable>
               <Text className="text-gray-700">
                 Agree with{' '}
-                <Text className="text-gray-600 underline">Terms & Condition</Text>
+                <Text style={{color: colorsScheme.primary}} className="text-gray-600 underline">Terms & Condition</Text>
               </Text>
             </View>
 
             {/* Sign Up button */}
             <Pressable
+              style={{backgroundColor: colorsScheme.primary}}
               className="bg-gray-500 py-4 rounded-full mt-4"
-              android_ripple={{ color: 'rgba(255, 255, 255, 0.2)' }}
+              android_ripple={{ color: '#93C9FF', radius: 120 }}
             >
               <Text className="text-white text-center font-semibold text-lg">Sign Up</Text>
             </Pressable>
@@ -155,27 +158,23 @@ const SignUpScreen = () => {
                 <View className="h-px flex-1 bg-gray-200" />
               </View>
 
-              <View className="flex-row justify-center space-x-6 mt-6">
-                {/* Apple button */}
-                <Pressable
-                  className="w-12 h-12 items-center justify-center bg-white rounded-full border border-gray-200"
-                  android_ripple={{ color: 'rgba(0, 0, 0, 0.1)', borderless: true, radius: 30 }}
-                >
-                </Pressable>
-
-                {/* Google button */}
-                <Pressable
-                  className="w-12 h-12 items-center justify-center bg-white rounded-full border border-gray-200"
-                  android_ripple={{ color: 'rgba(0, 0, 0, 0.1)', borderless: true, radius: 30 }}
-                >
-                </Pressable>
-
-                {/* Facebook button */}
-                <Pressable
-                  className="w-12 h-12 items-center justify-center bg-white rounded-full border border-gray-200"
-                  android_ripple={{ color: 'rgba(0, 0, 0, 0.1)', borderless: true, radius: 30 }}
-                >
-                </Pressable>
+              <View  className="flex-row justify-center bg-slate-200 rounded-full mx-2 mt-6">
+                <View className='flex-1 pr-2 rounded-full' style={{backgroundColor: colorsScheme.primary}} >
+                  <Pressable android_ripple={{ color: '#93C9FF', borderless: false, radius: 50 }} className='rounded-full py-4 justify-center items-center flex-row'   >
+                    <AntDesign name="google" size={24} color="white" />
+                    <Text className='text-white text-xl font-semibold ml-2' >
+                      Google
+                    </Text>
+                  </Pressable>
+                </View>
+                <View className='flex-1 px-2' >
+                  <Pressable android_ripple={{ color: 'rgba(0, 0, 0, 0.1)', borderless: false, radius: 50 }} className='rounded-full py-4 justify-center items-center flex-row'   >
+                    <AntDesign name="apple-o" size={24} color="black" />
+                    <Text className='text-black text-xl font-semibold ml-2' >
+                      Appel
+                    </Text>
+                  </Pressable>
+                </View>
               </View>
             </View>
 
@@ -183,7 +182,7 @@ const SignUpScreen = () => {
             <View className="flex-row justify-center mb-6">
               <Text className="text-gray-700">Already have an account? </Text>
               <Pressable>
-                <Text className="text-gray-700 font-semibold">Sign In</Text>
+                <Text style={{color: colorsScheme.primary}} className="text-gray-700 font-semibold">Sign In</Text>
               </Pressable>
             </View>
           </View>

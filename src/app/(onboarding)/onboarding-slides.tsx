@@ -164,9 +164,9 @@ const OnboardingSlide = () => {
           <Pressable
             onPress={nextSlide}
             style={{ backgroundColor: colorsScheme.primary }}
-            className={`rounded-full bg-[${colorsScheme.primary}] justify-center py-4 px-16`}
+            className={`rounded-full bg-[${colorsScheme.primary}] justify-center py-3.5 px-16`}
           >
-            <Text className='font-semibold font-inter text-white text-xl ' >
+            <Text className='font-semibold text-white text-xl ' >
               {currentSlide === slides.length - 1 ? 'Get Started' : 'Next'}
             </Text>
           </Pressable>

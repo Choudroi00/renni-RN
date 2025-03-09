@@ -54,7 +54,7 @@ export default function GetStarted() {
                   
                 >
                   <Text
-                    className="text-xl font-semibold font-inter text-white">
+                    className="text-xl font-semibold text-white">
                     Let's get started
                   </Text>
                 </Pressable>
