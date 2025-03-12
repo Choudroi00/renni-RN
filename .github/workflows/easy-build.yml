@@ -61,7 +61,8 @@ jobs:
           token: ${{ secrets.EXPO_TOKEN }}
   
       - name: ⚙️ Run Prebuild
-        run: pnpm prebuild:staging
+        run: pnpm prebuild:production
+        
         shell: bash
   
       - name: 📱 Run Android Build
