@@ -24,7 +24,7 @@ const TabItem = ({icon, name, route, index, activeTab, onPress} : TabItemProps) 
   const animatedColor = useAnimatedStyle(()=> {
     return {
       color: interpolateColor(
-        withTiming(index === activeTab ? 0 : 1),
+        index === activeTab ? 0 : 1,
         [0, 1],
         ['#000' , colorsScheme.primary],
       ),
@@ -35,7 +35,7 @@ const TabItem = ({icon, name, route, index, activeTab, onPress} : TabItemProps) 
 
   return (
     <Pressable
-      className="flex-1 items-center justify-center p-2"
+      className="flex-1 items-center justify-center"
       android_ripple={{radius: 30, color: colorsScheme.accent}}
       onPress={()=> onPress(index)} >
       <Animated.View style={[animatedColor]} >
@@ -56,12 +56,12 @@ const XBottomTabs = () => {
   const tabs = [
     { name: 'Home', icon: Home, route: '/home' },
     { name: 'Search', icon: Search, route: '/search' },
-    { name: 'Reservations', icon: Calendar, route: '/reservations' },
+    { name: 'Orders', icon: Calendar, route: '/reservations' },
     { name: 'Profile', icon: User, route: '/profile' },
   ];
 
   return (
-    <View className='rounded-t-3xl shadow-slate-300 py-8 px-8  bg-white absolute bottom-0 flex-row' >
+    <View className='rounded-t-3xl shadow-slate-300 py-6 px-8  bg-white absolute bottom-0 flex-row' >
       {
         tabs.map((item, index)=> {
           return (

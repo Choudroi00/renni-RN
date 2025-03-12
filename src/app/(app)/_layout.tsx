@@ -27,7 +27,7 @@ const MainLayout = () => {
 
 
   if (isFirstTime) {
-    return <Redirect href="/onboarding" />;
+    return <Redirect href="/(onboarding)" />;
   }
 
   // if (status === 'signOut') {
