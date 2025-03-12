@@ -13,6 +13,8 @@ import Animated, {
 } from 'react-native-reanimated';
 import useKeyboard from '@/lib/hooks/use-keyboard';
 import { colorsScheme } from '@/components/ui/colors';
+import { useIsFirstTime } from '@/lib';
+import { useRouter } from 'expo-router';
 
 const AuthScreen = () => {
   const [showPassword, setShowPassword] = useState(false);
@@ -21,6 +23,8 @@ const AuthScreen = () => {
   const isKeyboardVisible = useKeyboard();
 
   const [isLogin, setIsLogin] = useState(false);
+  const [ft, setIsFirstTime] = useIsFirstTime();
+  const router = useRouter()
 
   
   const headerHeightValue = useSharedValue(150);
@@ -181,11 +185,16 @@ const AuthScreen = () => {
           </View>
 
           <Pressable
+            onPress={()=> {
+              setIsFirstTime(false)
+              router.push('/(app)')
+              
+            }}
             style={{ backgroundColor: colorsScheme.primary }}
             className="bg-gray-500 py-4 rounded-full mt-4"
-            android_ripple={{ color: '#93C9FF', radius: 120 }}
-          >
-            <Text className="text-white text-center font-semibold text-lg">Sign Up</Text>
+            android_ripple={{ color: '#93C9FF', radius: 120 }}>
+
+            <Text className="text-white text-center font-semibold text-lg">{isLogin ? "Sign In" : "Sign Up"}</Text>
           </Pressable>
 
           <View className="mt-6 mb-4">
