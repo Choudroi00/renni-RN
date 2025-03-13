@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { View, Text, TextInput, Pressable, Keyboard, TouchableWithoutFeedback } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
@@ -30,6 +30,10 @@ const AuthScreen = () => {
   const headerHeightValue = useSharedValue(150);
   const headerOpacityValue = useSharedValue(1);
   const fieldHeightValue = useSharedValue(90);
+
+  const usernameInputRef = useRef<TextInput>(null)
+  const emailInputRef = useRef<TextInput>(null)
+  const passwordInputRef = useRef<TextInput>(null)
 
   useEffect(() => {
     if (isLogin) {
@@ -90,6 +94,11 @@ const AuthScreen = () => {
 
   
   const handleInputBlur = () => {
+
+    usernameInputRef.current?.blur()
+    emailInputRef.current?.blur()
+    passwordInputRef.current?.blur()
+    Keyboard.dismiss()
     
     if (!isKeyboardVisible) {
       headerHeightValue.value = withTiming(150, { 

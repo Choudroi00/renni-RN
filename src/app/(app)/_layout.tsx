@@ -36,11 +36,8 @@ const MainLayout = () => {
 
 
   return (
-    <Tabs
-      
-      screenOptions={{headerShown: false}}
-      tabBar={XBottomTabs} >
-
+    <Tabs screenOptions={{headerShown: false}} tabBar={(props) => <XBottomTabs {...props} />}   >
+      <Tabs.Screen name='/index' />
     </Tabs>
   )
 }
