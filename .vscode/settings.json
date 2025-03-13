@@ -36,5 +36,6 @@
   },
   "[github-actions-workflow]": {
     "editor.defaultFormatter": "bluebrown.yamlfmt"
-  }
+  },
+  "postman.settings.dotenv-detection-notification-visibility": false
 }

@@ -36,6 +36,8 @@ type XBottomTabsProps = {
   descriptors: BottomTabDescriptorMap; 
   navigation: NavigationHelpers<ParamListBase, BottomTabNavigationEventMap>; 
   insets: EdgeInsets; 
+
+  switchActiveTab: (index: number) => void;
 }
 
 const TabItem = ({ icon, name, route, index, activeTab, onPress }: TabItemProps) => {
@@ -49,16 +51,7 @@ const TabItem = ({ icon, name, route, index, activeTab, onPress }: TabItemProps)
     }
   })
 
-  const animatedHolder = useAnimatedStyle(()=> {
-    return {
-      height: interpolate(
-        withTiming(isActive? 18 : 0),
-        [18, 0],
-        [0, 18]
-
-      )
-    }
-  }) 
+   
   
   return (
     <Pressable
@@ -79,26 +72,34 @@ const TabItem = ({ icon, name, route, index, activeTab, onPress }: TabItemProps)
   );
 }
 
-const XBottomTabs : React.FC<XBottomTabsProps> = () => {
+const XBottomTabs : React.FC<XBottomTabsProps> = ({ switchActiveTab, navigation }) => {
   const [activeTab, setActiveTab] = useState(0);
   const tabPositions = useRef<number[]>([0, 0, 0, 0]);
   const containerWidth = useSharedValue(0);
+
+  
   
   const tabs = [
-    { name: 'Home', icon: Home, route: '/home' },
-    { name: 'Search', icon: Search, route: '/search' },
-    { name: 'Orders', icon: Calendar, route: '/reservations' },
-    { name: 'Profile', icon: User, route: '/profile' },
+    { name: 'Home', icon: Home, route: 'index' },
+    { name: 'Search', icon: Search, route: 'search' },
+    { name: 'Orders', icon: Calendar, route: 'reservations' },
+    { name: 'Profile', icon: User, route: 'profile' },
   ];
 
-  // Measure container width only once
+
+  useEffect(()=>{
+    switchActiveTab(activeTab)
+    navigation.navigate(tabs[activeTab].route)
+  }, [activeTab]);
+
+  
   const handleContainerLayout = (event: LayoutChangeEvent) => {
     const width = event.nativeEvent.layout.width;
     containerWidth.value = width ;
   };
 
   const animatedIndicatorStyle = useAnimatedStyle(() => {
-    // Assuming equal tab widths for now
+    
     const tabWidth = (containerWidth.value / tabs.length) ;
     return {
       transform: [
@@ -106,10 +107,10 @@ const XBottomTabs : React.FC<XBottomTabsProps> = () => {
       ],
       width: tabWidth - 28,
     };
-  });
+  }, [containerWidth, activeTab]);
 
   return (
-    <View className="rounded-t-3xl shadow-slate-800 pt-6 h-[74px] px-8 w-full bg-white absolute bottom-0 flex-col">
+    <View className="rounded-t-3xl shadow-slate-800 elevation-2xl pt-6 h-[74px] px-8 w-full bg-white absolute bottom-0 flex-col">
       <View className="flex-row h-[46]" onLayout={handleContainerLayout}>
         {tabs.map((item, index) => (
           <TabItem
