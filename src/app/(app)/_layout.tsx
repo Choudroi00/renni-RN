@@ -6,7 +6,7 @@ import { useAuth, useIsFirstTime } from '@/lib';
 import XBottomTabs from '@/components/app/tabs-navigator';
 import { useAppBarStore } from '@/lib/store/use-appbar-store';
 import AnimatedAppBar from '@/components/app/app-bar';
-import { User, User2Icon } from 'lucide-react-native';
+import { BellDot, BrickWallIcon, User, User2Icon } from 'lucide-react-native';
 
 const MainLayout = () => {
 
@@ -72,6 +72,10 @@ const MainLayout = () => {
           title: 'My Profile',
           backgroundColor: '#FFFFFF',
           height: 90,
+          rightAction: {
+            onPress: () => {},
+            icon: BellDot 
+          }
 
         });
         break;
