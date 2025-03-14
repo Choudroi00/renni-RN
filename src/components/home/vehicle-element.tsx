@@ -1,5 +1,6 @@
 import { View, Text, TouchableOpacity, Image } from 'react-native'
 import React from 'react'
+import { colorsScheme } from '../ui/colors';
 
 interface VehicleElementProps {
   brand?: string;
@@ -45,33 +46,38 @@ const VehicleElement : React.FC<VehicleElementProps> = ({
       </View>
       
       {/* Car image */}
-      <Image
-        source={{ uri: imageUri }}
-        className="w-full h-36 rounded-lg"
-        resizeMode="contain"
-      />
+      <View className='flex-row w-full' >
+        <View className='flex-1 ' ></View>
+
+        <Image
+          source={{ uri: imageUri }}
+          className="flex-[2] h-36 rounded-lg"
+          resizeMode="contain"
+        />
+      </View>
       
       {/* Car specs */}
       <View className="flex-row justify-between mt-2">
-        <View className="items-center flex-1 px-2 py-1 bg-gray-200 rounded-md mx-1">
-          <Text className="text-gray-500 text-xs">{transmission}</Text>
+        <View className="items-center flex-1 px-2 py-1 border-r-2 border-slate-400 mx-1">
+          <Text className="text-gray-500 text-sm">{transmission}</Text>
         </View>
-        <View className="items-center flex-1 px-2 py-1 bg-gray-200 rounded-md mx-1">
-          <Text className="text-gray-500 text-xs">{seats} seats</Text>
+        <View className="items-center flex-1 px-2 py-1 border-r-2 border-slate-400 mx-1">
+          <Text className="text-gray-500 text-sm">{seats} seats</Text>
         </View>
-        <View className="items-center flex-1 px-2 py-1 bg-gray-200 rounded-md mx-1">
-          <Text className="text-gray-500 text-xs">{fuelType}</Text>
+        <View className="items-center flex-1 px-2 py-1  mx-1">
+          <Text className="text-gray-500 text-sm">{fuelType}</Text>
         </View>
       </View>
       
       {/* Price and rent button */}
       <View className="flex-row justify-between items-center mt-4">
         <View>
-          <Text className="text-2xl font-bold">${pricePerDay}</Text>
+          <Text className="text-2xl font-bold">Đ{pricePerDay}</Text>
           <Text className="text-gray-500 text-xs">Day</Text>
         </View>
         <TouchableOpacity 
-          className="bg-black rounded-lg px-4 py-2"
+          style={{backgroundColor: colorsScheme.primary}}
+          className=" rounded-xl px-7 py-2.5"
           onPress={onRentPress}
         >
           <Text className="text-white font-medium">Rent Now</Text>

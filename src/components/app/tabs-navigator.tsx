@@ -15,6 +15,8 @@ import { BottomTabDescriptorMap, BottomTabNavigationEventMap } from "@react-navi
 import { TabNavigationState, NavigationHelpers } from "@react-navigation/native";
 import { EdgeInsets } from "react-native-safe-area-context";
 
+import { BlurView } from 'expo-blur';
+
 const ICON_SIZE = 22;
 
 type TabItemProps = {
@@ -112,7 +114,9 @@ const XBottomTabs : React.FC<XBottomTabsProps> = ({ switchActiveTab, navigation 
   }, [containerWidth, activeTab]);
 
   return (
-    <View className="rounded-t-3xl shadow-slate-800 elevation-2xl pt-6 h-[74px] px-8 w-full bg-white absolute bottom-0 flex-col">
+
+    <View className="rounded-t-3xl shadow-slate-800 elevation-2xl pt-6 h-[74px] px-8 w-full bg-transparent absolute bottom-0 flex-col">
+      <BlurView intensity={100} style={{ position: 'absolute', top: 0, left: 0, right: 0, bottom: 0, width: '100%', height: '100%' }} />
       <View className="flex-row h-[46]" onLayout={handleContainerLayout}>
         {tabs.map((item, index) => (
           <TabItem

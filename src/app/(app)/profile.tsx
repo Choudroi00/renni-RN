@@ -156,8 +156,8 @@ const ProfileTab = () => {
           transmission="Automatic"
           seats={5}
           fuelType="Diesel"
-          pricePerDay={350}
-          imageUri="https://example.com/mercedes-s500.jpg"
+          pricePerDay={3500}
+          imageUri="https://assets.ayoub-dev.xyz/app/dev/car-item.jpg?ts=1"
           onRentPress={() => {}}
         />
         

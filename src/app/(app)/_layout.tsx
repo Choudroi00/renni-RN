@@ -108,7 +108,9 @@ const MainLayout = () => {
     <View className='flex-1' >
       <AnimatedAppBar />
 
-      <Tabs screenOptions={{headerShown: false}} tabBar={(props) => <XBottomTabs switchActiveTab={switchTab} {...props} />}   >
+      <Tabs
+        
+       screenOptions={{headerShown: false}} tabBar={(props) => <XBottomTabs switchActiveTab={switchTab} {...props} />}   >
         <Tabs.Screen name='index'  />
         <Tabs.Screen name='search' />
         <Tabs.Screen name='reservations' />
