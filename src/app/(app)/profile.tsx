@@ -1,6 +1,7 @@
 import { View, Text, ScrollView, Dimensions } from 'react-native'
 import React from 'react'
-import { ChevronRight, User, User2Icon } from 'lucide-react-native'
+import { ChevronRight, InfoIcon, LucideMessageSquareReply, MapIcon, MessageCircleHeartIcon, Paperclip, PartyPopper, ReceiptTextIcon, Save, Settings2Icon, TerminalIcon, User, User2Icon, UserPlus2Icon, Wallet2Icon } from 'lucide-react-native'
+import VehicleElement from '@/components/home/vehicle-element'
 
 
 
@@ -15,25 +16,48 @@ const ProfileTab = () => {
     },
     {
       title: 'Documents',
-      icon: User,
+      icon: Paperclip,
     },
     {
       title: 'Reservations',
-      icon: User,
+      icon: MapIcon,
     },
     {
-      title: 'Profile',
-      icon: User,
+      title: 'Saved articles',
+      icon: Save,
     },
     {
-      title: 'Profile',
-      icon: User,
+      title: 'My Wallet',
+      icon: Wallet2Icon,
     },
+    {
+      title: 'Referrals',
+      icon: UserPlus2Icon,
+    },
+    {
+      title: 'Settings',
+      icon: Settings2Icon,
+    },
+  ]
+
+  const Application = [
+    {
+      title: 'About Us',
+      icon: InfoIcon,
+    },
+    {
+      title: 'Terms & Conditions',
+      icon: ReceiptTextIcon,
+    },
+    {
+      title: 'Contact Us',
+      icon: LucideMessageSquareReply
+    }
   ]
 
 
   return (
-    <ScrollView contentContainerClassName='bg-white pt-6 pb-24' contentContainerStyle={{paddingBottom: 150}} className='' >
+    <ScrollView contentContainerClassName='bg-white pt-6 pb-24' contentContainerStyle={{paddingBottom: 150}} >
       <View className='flex-row' style={{height: sh / 4}} >
 
         <View className='flex-1 h-1/3 space-y-5' >
@@ -97,15 +121,15 @@ const ProfileTab = () => {
 
 
 
-        <View className='flex-col' >
+        <View className='flex-col mt-10 mb-10' >
           <Text className='text-black text-xl font-semibold mb-4' >
-            Account
+            Application
           </Text>
 
           <View className='bg-slate-100 rounded-3xl p-6'  >
 
             {
-              accountOptions.map((option, index) => {
+              Application.map((option, index) => {
                 const Icon = option.icon
                 return (
                   <View key={index} className='flex-row py-4 px-3'  >
@@ -115,7 +139,7 @@ const ProfileTab = () => {
                       <Text className='text-xl font-medium' >
                         {option.title}
                       </Text>
-                      <View className='rounded-full h-1 bg-slate-200 w-full mt-2.5' ></View>
+                      {!(index === Application.length - 1) &&  <View className='rounded-full h-1 bg-slate-200 w-full mt-2.5' ></View>}
                     </View>
 
                     <ChevronRight size={22} color='#5f5f5f'  />
@@ -125,34 +149,18 @@ const ProfileTab = () => {
             }
           </View>
         </View>
-        <View className='flex-col' >
-          <Text className='text-black text-xl font-semibold mb-4' >
-            Account
-          </Text>
 
-          <View className='bg-slate-100 rounded-3xl p-6'  >
-
-            {
-              accountOptions.map((option, index) => {
-                const Icon = option.icon
-                return (
-                  <View key={index} className='flex-row py-4 px-3'  >
-                    <Icon size={22} color='#464646'  />
-                    <View className='flex-col flex-1 ps-6 pe-2' >
-
-                      <Text className='text-xl font-medium' >
-                        {option.title}
-                      </Text>
-                      <View className='rounded-full h-1 bg-slate-200 w-full mt-2.5' ></View>
-                    </View>
-
-                    <ChevronRight size={22} color='#5f5f5f'  />
-                  </View>
-                )
-              })
-            }
-          </View>
-        </View>
+        <VehicleElement 
+          model="S 500 Sedan"
+          rating={4.9}
+          transmission="Automatic"
+          seats={5}
+          fuelType="Diesel"
+          pricePerDay={350}
+          imageUri="https://example.com/mercedes-s500.jpg"
+          onRentPress={() => {}}
+        />
+        
       </View>
 
     </ScrollView>

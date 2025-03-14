@@ -1,6 +1,6 @@
 import { LayoutChangeEvent, Pressable, StyleSheet, Text, View } from 'react-native';
 import React, { useState, useEffect, useRef } from 'react';
-import { Calendar, Home, LucideIcon, Search, User } from 'lucide-react-native';
+import { Calendar, Home, LucideHeart, LucideIcon, Search, User, User2Icon } from 'lucide-react-native';
 import Animated, { 
   interpolateColor, 
   useAnimatedStyle, 
@@ -83,7 +83,9 @@ const XBottomTabs : React.FC<XBottomTabsProps> = ({ switchActiveTab, navigation 
     { name: 'Home', icon: Home, route: 'index' },
     { name: 'Search', icon: Search, route: 'search' },
     { name: 'Orders', icon: Calendar, route: 'reservations' },
-    { name: 'Profile', icon: User, route: 'profile' },
+    { name: 'Favorite', icon: LucideHeart, route: 'favorite' },
+
+    { name: 'Profile', icon: User2Icon, route: 'profile' },
   ];
 
 

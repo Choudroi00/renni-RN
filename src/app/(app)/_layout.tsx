@@ -67,7 +67,19 @@ const MainLayout = () => {
           height: 90,
         });
         break;
-      case 3: // Profile
+      case 3:
+        updateAppBar({ 
+          title: 'Favorite',
+          backgroundColor: '#FFFFFF',
+          height: 90,
+          rightAction: {
+            onPress: () => {},
+            icon: BellDot 
+          }
+
+        });
+        break;
+      case 4: // Profile
         updateAppBar({ 
           title: 'My Profile',
           backgroundColor: '#FFFFFF',
@@ -100,6 +112,7 @@ const MainLayout = () => {
         <Tabs.Screen name='index'  />
         <Tabs.Screen name='search' />
         <Tabs.Screen name='reservations' />
+        <Tabs.Screen name='favorite' />
         <Tabs.Screen name='profile' />
       </Tabs>
     </View>
