@@ -1,9 +1,10 @@
 import { LucideIcon } from 'lucide-react-native';
+import React from 'react';
 import { create, StateCreator } from 'zustand';
 
 interface AppBarAction {
   onPress: (() => void) | undefined;
-  icon: LucideIcon | null;
+  icon?: LucideIcon | null;
 }
 
 interface AppBarState {
@@ -13,6 +14,10 @@ interface AppBarState {
   title: string;
   rightAction: AppBarAction | null;
   leftAction: AppBarAction | null;
+
+  barChildElement: React.JSX.Element | null;
+
+  setBarChild: (child: React.JSX.Element) => void;
   setHeight: (height: number) => void;
   setBackgroundColor: (backgroundColor: string) => void;
   setVisibility: (isVisible: boolean) => void;
@@ -30,6 +35,10 @@ const appBarStore: StateCreator<AppBarState> = (set) => ({
   title: 'Home',
   rightAction: null,
   leftAction: null,
+  barChildElement: null,
+
+  setBarChild: (child) => set({barChildElement: child}),
+
   setHeight: (height) => set({ height }),
   setBackgroundColor: (backgroundColor) => set({ backgroundColor }),
   setVisibility: (isVisible) => set({ isVisible }),

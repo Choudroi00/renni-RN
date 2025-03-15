@@ -20,7 +20,7 @@ const SPRING_CONFIG = {
 
 interface AppBarAction {
   onPress: (() => void) | undefined;
-  icon: LucideIcon | null;
+  icon?: LucideIcon | null;
 }
 
 const AnimatedAppBar = () => {
@@ -32,7 +32,8 @@ const AnimatedAppBar = () => {
     isVisible,
     title,
     rightAction,
-    leftAction
+    leftAction,
+    barChildElement
   } = useAppBarStore();
   
   const animatedHeight = useSharedValue(height);
@@ -64,14 +65,14 @@ const AnimatedAppBar = () => {
     if (leftAction && leftAction.icon) {
       const Icon = leftAction.icon;
       return (
-        <TouchableOpacity onPress={leftAction.onPress} style={{backgroundColor: colorsScheme.accent}} className="p-4 rounded-xl">
+        <TouchableOpacity onPress={leftAction.onPress}  className="p-4 bg-slate-100 rounded-xl">
           <LucideIceCreamCone size={24} color="#000" />
         </TouchableOpacity>
       );
     }
     if(!leftAction) return null;
     return (
-      <TouchableOpacity onPress={leftAction?.onPress} style={{backgroundColor: colorsScheme.accent}} className="p-4 rounded-xl">
+      <TouchableOpacity onPress={leftAction?.onPress}  className="p-4 bg-slate-100 rounded-xl">
         <ChevronLeft size={24} color="#000" />
       </TouchableOpacity>
     );
@@ -82,24 +83,26 @@ const AnimatedAppBar = () => {
     if (rightAction && rightAction.icon) {
       const Icon = rightAction.icon;
       return (
-        <TouchableOpacity onPress={rightAction.onPress} className="p-3.5 bg-zinc-100 rounded-xl">
+        <TouchableOpacity onPress={rightAction.onPress} className="p-3.5 bg-slate-100 rounded-xl">
           <Icon size={21} color="#000" />
         </TouchableOpacity>
       );
     }else if(rightAction){
 
       return (
-        <TouchableOpacity onPress={rightAction?.onPress} className="p-3 bg-slate-200 rounded-xl">
+        <TouchableOpacity onPress={rightAction?.onPress} className="p-3 bg-slate-100 rounded-xl">
             <ChevronRight size={24} color="#000" />
           </TouchableOpacity>
       );
     }
   };
+
+  const BarChildElement = barChildElement;
   
   return (
     <Animated.View 
       style={[appBarAnimatedStyle]} 
-      className="shadow-md z-10"
+      className="shadow-md z-50"
     >
       <StatusBar 
         backgroundColor="transparent"
@@ -108,10 +111,14 @@ const AnimatedAppBar = () => {
       />
       <View className="flex-row justify-between items-center h-full px-4">
         {renderLeftAction()}
+
+        {barChildElement ? BarChildElement :
         
         <Text className="font-semibold text-lg flex-1 text-center">
           {title}
         </Text>
+
+        }
         
         {renderRightAction()}
       </View>

@@ -109,14 +109,15 @@ const XBottomTabs : React.FC<XBottomTabsProps> = ({ switchActiveTab, navigation 
       transform: [
         { translateX: withSpring(activeTab * (tabWidth), { damping: 10 }) },
       ],
-      width: tabWidth - 28,
+      left: tabWidth / 4
+      
     };
   }, [containerWidth, activeTab]);
 
   return (
 
-    <View className="rounded-t-3xl shadow-slate-800 elevation-2xl pt-6 h-[74px] px-8 w-full bg-transparent absolute bottom-0 flex-col">
-      <BlurView intensity={100} style={{ position: 'absolute', top: 0, left: 0, right: 0, bottom: 0, width: '100%', height: '100%' }} />
+    <BlurView experimentalBlurMethod="dimezisBlurView" intensity={60} className="rounded-t-3xl overflow-hidden border-t-[1px] border-r-[1px] border-l-[1px] border-slate-200 shadow-slate-800 elevation-2xl pt-3 h-[74px] px-8 w-full bg-transparent absolute bottom-0 flex-col">
+      
       <View className="flex-row h-[46]" onLayout={handleContainerLayout}>
         {tabs.map((item, index) => (
           <TabItem
@@ -133,14 +134,15 @@ const XBottomTabs : React.FC<XBottomTabsProps> = ({ switchActiveTab, navigation 
           animatedIndicatorStyle, 
           {
             height: 7, 
-            borderTopLeftRadius: 40,
-            borderTopRightRadius: 40, 
+            width: 7,
+            borderRadius: 9999,
+             
             backgroundColor: colorsScheme.primary,
             marginStart: 15
           }
         ]}
       />
-    </View>
+    </BlurView>
   );
 }
 

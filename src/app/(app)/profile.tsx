@@ -1,13 +1,16 @@
-import { View, Text, ScrollView, Dimensions } from 'react-native'
-import React from 'react'
-import { ChevronRight, InfoIcon, LucideMessageSquareReply, MapIcon, MessageCircleHeartIcon, Paperclip, PartyPopper, ReceiptTextIcon, Save, Settings2Icon, TerminalIcon, User, User2Icon, UserPlus2Icon, Wallet2Icon } from 'lucide-react-native'
+import { View, Text, ScrollView, Dimensions, Pressable } from 'react-native'
+import React, { useEffect } from 'react'
+import { ChevronRight, DoorOpenIcon, InfoIcon, LucideDoorOpen, LucideMessageSquareReply, MapIcon, MessageCircleHeartIcon, Paperclip, PartyPopper, ReceiptTextIcon, Save, Settings2Icon, TerminalIcon, User, User2Icon, UserPlus2Icon, Wallet2Icon } from 'lucide-react-native'
 import VehicleElement from '@/components/home/vehicle-element'
+import Animated, { Easing, Extrapolation, interpolateColor, useAnimatedStyle, useSharedValue, withDelay, withSpring, withTiming } from 'react-native-reanimated'
 
 
 
 const ProfileTab = () => {
 
   const sh = Dimensions.get('screen').height
+
+  
 
   const accountOptions = [
     {
@@ -38,6 +41,10 @@ const ProfileTab = () => {
       title: 'Settings',
       icon: Settings2Icon,
     },
+    {
+      title: 'Log out',
+      icon: LucideDoorOpen,
+    },
   ]
 
   const Application = [
@@ -55,10 +62,19 @@ const ProfileTab = () => {
     }
   ]
 
+  
+
+  
+
+  const pressedItem = useSharedValue(-1)
+  const animator = useSharedValue(0)
+  const AnimPressable = Animated.createAnimatedComponent(Pressable)
+  
+
 
   return (
-    <ScrollView contentContainerClassName='bg-white pt-6 pb-24' contentContainerStyle={{paddingBottom: 150}} >
-      <View className='flex-row' style={{height: sh / 4}} >
+    <ScrollView contentContainerClassName='bg-white pt-6 pb-24' contentContainerStyle={{paddingBottom: 750}} >
+      <View className='flex-row mb-14'  >
 
         <View className='flex-1 h-1/3 space-y-5' >
           <View className='flex-row justify-center items-center' >
@@ -91,7 +107,7 @@ const ProfileTab = () => {
       <View className='px-8' >
 
         <View className='flex-col' >
-          <Text className='text-black text-xl font-semibold mb-4' >
+          <Text className='text-black text-xl font-semibold mb-6' >
             Account
           </Text>
 
@@ -99,21 +115,54 @@ const ProfileTab = () => {
 
             {
               accountOptions.map((option, index) => {
-                const Icon = option.icon
+                const Icon = option.icon;
+
+                
+              
+                const animatedBg = useAnimatedStyle(() => {
+                  
+                  if (pressedItem.value !== index) {
+                    return {
+                      backgroundColor: 'rgba(0,0,0,0)'
+                    }
+                  }
+                  
+                  return {
+                    backgroundColor: interpolateColor(
+                      animator.value,
+                      [0, 1],
+                      ['rgba(0,0,0,0)', 'rgba(226, 232, 240, 1)'],
+                      "RGB",
+                      {
+                        
+                      }
+                    )
+                  };
+                });
+              
                 return (
-                  <View key={index} className='flex-row py-4 px-3'  >
-                    <Icon size={22} color='#464646'  />
-                    <View className='flex-col flex-1 ps-6 pe-2' >
+                  <View className='my-1' >
 
-                      <Text className='text-xl font-medium' >
-                        {option.title}
-                      </Text>
-                      {!(index === accountOptions.length - 1) &&  <View className='rounded-full h-1 bg-slate-200 w-full mt-2.5' ></View>}
-                    </View>
-
-                    <ChevronRight size={22} color='#5f5f5f'  />
+                    <AnimPressable  
+                      key={index} 
+                      className='flex-row py-4 px-3 rounded-2xl'
+                      style={animatedBg}
+                      onPressIn={() => {pressedItem.value = index  ; animator.value = withTiming(1, { duration: 200, easing: Easing.bezier(0.25, 0.1, 0.25, 1)})}}
+                      onPressOut={() => { pressedItem.value = withDelay( 300, withTiming(-1)) ;animator.value = withDelay(250 , withTiming(0, { duration: 300 }))}}
+                    >
+                      <Icon size={22} color='rgba(70,70,70,1)' />
+                      <View className='flex-col flex-1 ps-6 pe-2'>
+                        <Text className='text-xl font-medium'>
+                          {option.title}
+                        </Text>
+                      </View>
+                      <ChevronRight size={22} color='rgba(95,95,95,1)' />
+                    </AnimPressable>
+                        {/* {index !== accountOptions.length - 1 && (
+                          <View className='rounded-full h-1 bg-slate-200 w-full mt-2.5' />
+                        )} */}
                   </View>
-                )
+                );
               })
             }
           </View>
@@ -139,7 +188,7 @@ const ProfileTab = () => {
                       <Text className='text-xl font-medium' >
                         {option.title}
                       </Text>
-                      {!(index === Application.length - 1) &&  <View className='rounded-full h-1 bg-slate-200 w-full mt-2.5' ></View>}
+                      
                     </View>
 
                     <ChevronRight size={22} color='#5f5f5f'  />
@@ -150,16 +199,7 @@ const ProfileTab = () => {
           </View>
         </View>
 
-        <VehicleElement 
-          model="S 500 Sedan"
-          rating={4.9}
-          transmission="Automatic"
-          seats={5}
-          fuelType="Diesel"
-          pricePerDay={3500}
-          imageUri="https://assets.ayoub-dev.xyz/app/dev/car-item.jpg?ts=1"
-          onRentPress={() => {}}
-        />
+        
         
       </View>
 

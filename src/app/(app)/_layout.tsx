@@ -49,7 +49,7 @@ const MainLayout = () => {
           height: 90,
           rightAction: {
             onPress: () => {},
-            icon: User 
+            icon: BellDot 
           }
         });
         break;
@@ -58,6 +58,11 @@ const MainLayout = () => {
           title: 'Search',
           backgroundColor: '#F5F5F5',
           height: 80,
+          rightAction: {
+            onPress: () => {},
+            icon: BellDot 
+          },
+          barChildElement: null
         });
         break;
       case 2: // Reservations
@@ -65,6 +70,11 @@ const MainLayout = () => {
           title: 'My Reservations',
           backgroundColor: '#FFFFFF',
           height: 90,
+          rightAction: {
+            onPress: () => {},
+            icon: BellDot 
+          },
+          barChildElement: null
         });
         break;
       case 3:
@@ -75,7 +85,8 @@ const MainLayout = () => {
           rightAction: {
             onPress: () => {},
             icon: BellDot 
-          }
+          },
+          barChildElement: null
 
         });
         break;
@@ -87,7 +98,8 @@ const MainLayout = () => {
           rightAction: {
             onPress: () => {},
             icon: BellDot 
-          }
+          },
+          barChildElement: null
 
         });
         break;
@@ -110,8 +122,8 @@ const MainLayout = () => {
 
       <Tabs
         
-       screenOptions={{headerShown: false}} tabBar={(props) => <XBottomTabs switchActiveTab={switchTab} {...props} />}   >
-        <Tabs.Screen name='index'  />
+       screenOptions={{headerShown: false}}  tabBar={(props) => <XBottomTabs switchActiveTab={switchTab} {...props} />}   >
+        <Tabs.Screen name='index'   />
         <Tabs.Screen name='search' />
         <Tabs.Screen name='reservations' />
         <Tabs.Screen name='favorite' />
