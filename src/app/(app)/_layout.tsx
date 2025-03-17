@@ -7,6 +7,8 @@ import XBottomTabs from '@/components/app/tabs-navigator';
 import { useAppBarStore } from '@/lib/store/use-appbar-store';
 import AnimatedAppBar from '@/components/app/app-bar';
 import { BellDot, BrickWallIcon, User, User2Icon } from 'lucide-react-native';
+import { colorsScheme } from '@/components/ui/colors';
+
 
 const MainLayout = () => {
 
@@ -45,12 +47,19 @@ const MainLayout = () => {
       case 0: // Home
         updateAppBar({ 
           title: 'Home',
-          backgroundColor: '#FFFFFF',
+          backgroundColor: colorsScheme.primary,
           height: 90,
           rightAction: {
             onPress: () => {},
             icon: BellDot 
-          }
+          },
+          barChildElement: (<View className='flex-row space-x-2 px-4 ' >
+          <MapPinCheck size={22} color={'#ffffff'}  />
+          <Text className='text-white ml-4 text-xl font-semibold' >
+            Algeria, Algiers
+          </Text>
+          
+        </View>)
         });
         break;
       case 1: // Search

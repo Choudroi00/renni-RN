@@ -49,14 +49,14 @@ export default function Home() {
     <ScrollView showsVerticalScrollIndicator={false} contentContainerClassName='pb-40' onScroll={scrollObserver} >
       
       <View className='w-full h-full bg-white' >
-        <View className='rounded-b-[40] w-full h-40 grid-cols-2 mb-8 justify-center items-center space-x-6 px-10' style={{backgroundColor: colorsScheme.primary}} >
+        <View className='rounded-b-[40] w-full h-40 grid-cols-2 mb-8 justify-center items-center space-x-6 px-7' style={{backgroundColor: colorsScheme.primary}} >
           <View className='flex-row space-x-4' >
-            <View className='rounded-xl flex-row bg-slate-50 px-8 py-5 flex-1 me-5' >
-              <Search size={22} color={colorsScheme.primary}  />
-              <Text className='text-slate-500 text-xl mx-4' >Search nearby</Text>
+            <View className='rounded-xl flex-row bg-slate-50 px-8 py-4 flex-1 me-5' >
+              <Search size={20} color={colorsScheme.primary}  />
+              <Text className='text-slate-300 text-xl mx-4' >Search nearby</Text>
             </View>
             <View className='p-4 aspect-square bg-slate-50 justify-center items-center rounded-xl' >
-              <Settings2Icon size={22} color={colorsScheme.primary}  />
+              <Settings2Icon size={20} color={colorsScheme.primary}  />
             </View>
           </View>
           
