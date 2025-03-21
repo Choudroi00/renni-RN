@@ -1,7 +1,7 @@
 import { LinearGradient } from 'expo-linear-gradient';
 import { Link, router, useRouter } from 'expo-router';
 import React from 'react';
-import { Image, Pressable, Text, View } from 'react-native';
+import { Image, Pressable, StatusBar, Text, View } from 'react-native';
 import { SvgUri } from 'react-native-svg';
 
 import { colorsScheme } from '@/components/ui/colors';
@@ -10,6 +10,11 @@ import { useAuth } from '@/lib';
 export default function GetStarted() {
   return (
     <>
+      <StatusBar 
+        backgroundColor="transparent"
+        barStyle="dark-content"
+        translucent
+      />
       <View className="flex-1 bg-white">
         <View className="" style={{ height: 60, width: '100%' }}></View>
         <View className="flex-1 items-center justify-center pb-4">

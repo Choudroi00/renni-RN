@@ -1,4 +1,4 @@
-import { View, Text, Image, Pressable, ScrollView } from 'react-native';
+import { View, Text, Image, Pressable, ScrollView, StatusBar } from 'react-native';
 import React, { useEffect, useRef, useState } from 'react';
 import { SvgUri } from 'react-native-svg';
 import Animated, {
@@ -30,25 +30,25 @@ const OnboardingSlide = () => {
       title: "What's RenniT ?",
       description:
         'Either you are a customer or an owner. Enjoy Rennit exclusive features and management tools.',
-      img: 'audi-onb.png',
+      img: 'assets/wkth-1.jpg',
       background: 'onb-test.svg',
-      bgColor: 'rgba(245, 245, 220, 1)'
+      bgColor: 'rgba(0, 207, 255, 1)'
     },
     {
       title: 'How to use RenniT ?',
       description:
         'RenniT is easy to use, you can start by creating an account, then you can start renting or renting your vehicle.',
-      img: 'audi-onb.png',
+      img: 'assets/wkth-2.jpg',
       background: 'onb-test-3.svg?ts=3',
-      bgColor: 'rgba(255, 190, 111, 1)'
+      bgColor: 'rgba(0, 122, 255, 1)'
     },
     {
       title: 'Why RenniT ?',
       description:
         'RenniT is nº1 management application, it is easy to use and has a lot of features that will help you manage your rent easily.',
-      img: 'audi-onb.png',
+      img: 'assets/wkth-3.jpg',
       background: 'onb-test-2.svg?ts=1',
-      bgColor: 'rgba(245, 245, 220, 1)'
+      bgColor: 'rgba(53, 0, 255, 1)'
     },
   ];
 
@@ -83,13 +83,19 @@ const OnboardingSlide = () => {
 
   return (
     <View className="w-full h-full bg-white flex-col">
-      <Animated.View style={heroColorAnimation} className="flex-1 w-full items-center justify-center">
-        <Image source={{ uri: baseAssetsUrl + slides[currentSlide].img as string }} style={{ position: 'absolute', top: 0, width: 300, aspectRatio: 1, zIndex: 1, objectFit: 'contain', marginTop: 50 }} />
+      <StatusBar 
+        backgroundColor="transparent"
+        barStyle="dark-content"
+        translucent
+      />
+      <Animated.View style={{}} className="flex-1 w-full items-center justify-center">
+        
         <Animated.ScrollView
           ref={sliderRef}
           style={[]}
           horizontal
           pagingEnabled
+          scrollEnabled={false}
           contentContainerStyle={[{height: '100%', padding: 0}, heroColorAnimation]}
           showsHorizontalScrollIndicator={false}
           >
@@ -97,8 +103,9 @@ const OnboardingSlide = () => {
           {
             slides.map((item, index) => {
               return (
-                <View key={index} style={{height: '100%', width: screenWidth, display: 'flex'}} >
-                  <SvgUri height={'100%'} width={screenWidth} preserveAspectRatio="xMidYMid meet" style={{}}  uri={baseAssetsUrl + item.background}  />
+                <View key={index} className='justify-center items-center' style={{height: '100%', width: screenWidth, display: 'flex'}} >
+                  <Image source={{ uri: baseAssetsUrl + slides[index].img as string }} style={{ width: 300, aspectRatio: 1, zIndex: 1, objectFit: 'contain', marginTop: 50 }} />
+                  {/* <SvgUri height={'100%'}  width={screenWidth} preserveAspectRatio="xMidYMid meet" style={{opacity: 0}}  uri={baseAssetsUrl + item.background}  /> */}
                 </View>
               )
             })

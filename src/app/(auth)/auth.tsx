@@ -13,7 +13,7 @@ import Animated, {
 } from 'react-native-reanimated';
 import useKeyboard from '@/lib/hooks/use-keyboard';
 import { colorsScheme } from '@/components/ui/colors';
-import { useIsFirstTime } from '@/lib';
+import { useAuth, useIsFirstTime } from '@/lib';
 import { useRouter } from 'expo-router';
 
 const AuthScreen = () => {
@@ -25,6 +25,8 @@ const AuthScreen = () => {
   const [isLogin, setIsLogin] = useState(false);
   const [ft, setIsFirstTime] = useIsFirstTime();
   const router = useRouter()
+
+  const auth = useAuth()
 
   
   const headerHeightValue = useSharedValue(150);
@@ -196,6 +198,10 @@ const AuthScreen = () => {
           <Pressable
             onPress={()=> {
               setIsFirstTime(false)
+              auth.signIn({
+                access:"",
+                refresh: ""
+              })
               router.push('/(app)')
               
             }}

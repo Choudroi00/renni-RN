@@ -6,7 +6,7 @@ import { useAuth, useIsFirstTime } from '@/lib';
 import XBottomTabs from '@/components/app/tabs-navigator';
 import { useAppBarStore } from '@/lib/store/use-appbar-store';
 import AnimatedAppBar from '@/components/app/app-bar';
-import { BellDot, BrickWallIcon, User, User2Icon } from 'lucide-react-native';
+import { BellDot, BrickWallIcon, MapPinCheck, User, User2Icon } from 'lucide-react-native';
 import { colorsScheme } from '@/components/ui/colors';
 
 
@@ -33,9 +33,7 @@ const MainLayout = () => {
 
 
 
-  if (isFirstTime) {
-    return <Redirect href="/get-started" />;
-  }
+  
 
   const [index, setIndex] = useState(0);
 
@@ -124,14 +122,17 @@ const MainLayout = () => {
     }
   
 
+    if (status === "signOut") {
+      return <Redirect href="/get-started" />;
+    }
 
   return (
     <View className='flex-1' >
       <AnimatedAppBar />
 
       <Tabs
-        
-       screenOptions={{headerShown: false}}  tabBar={(props) => <XBottomTabs switchActiveTab={switchTab} {...props} />}   >
+          screenOptions={{headerShown: false}}  
+          tabBar={(props) => <XBottomTabs switchActiveTab={switchTab} {...props} />}   >
         <Tabs.Screen name='index'   />
         <Tabs.Screen name='search' />
         <Tabs.Screen name='reservations' />
